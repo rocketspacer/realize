@@ -2,10 +2,11 @@ package main
 
 import (
 	"errors"
-	"gopkg.in/urfave/cli.v2"
+	"log"
 	"os"
 	"strings"
-	"log"
+
+	"gopkg.in/urfave/cli.v2"
 )
 
 // Array check if a string is in given array
@@ -43,9 +44,6 @@ func split(args, fields []string) []string {
 // Duplicates check projects with same name or same combinations of main/path
 func duplicates(value Project, arr []Project) (Project, error) {
 	for _, val := range arr {
-		if value.Path == val.Path {
-			return val, errors.New("There is already a project with path '" + val.Path + "'. Check your config file!")
-		}
 		if value.Name == val.Name {
 			return val, errors.New("There is already a project with name '" + val.Name + "'. Check your config file!")
 		}
